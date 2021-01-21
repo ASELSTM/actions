@@ -72,7 +72,7 @@ def checkAstyle():
 
 # Find all files in source root path
 def find_files():
-    output = subprocess.check_output(
+    output = subprocess.run(
         ["git", " diff", "--name-only HEAD~1..HEAD"],
         stderr=subprocess.STDOUT,
     )
