@@ -76,8 +76,10 @@ def find_files():
             ["git", " diff", "--name-only HEAD~1..HEAD"],
             stderr=subprocess.STDOUT,
         )
+	print(output)
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
+		  print(os.path.join(root, f))
           for os.path.join(root, f) in output:
               if f.endswith((".h", ".c", ".hpp", ".cpp")):
                   source_list.append(os.path.join(root, f))
