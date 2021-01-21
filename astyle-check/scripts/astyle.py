@@ -72,11 +72,12 @@ def checkAstyle():
 
 # Find all files in source root path
 def find_files():
-        output = subprocess.check_output(
-            ["git", " diff", "--name-only HEAD~1..HEAD"],
-            stderr=subprocess.STDOUT,
-        )
+    output = subprocess.check_output(
+        ["git", " diff", "--name-only HEAD~1..HEAD"],
+        stderr=subprocess.STDOUT,
+    )
     print(output)
+
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
           print(os.path.join(root, f))
