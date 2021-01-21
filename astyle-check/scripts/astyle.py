@@ -80,8 +80,9 @@ def find_files():
 
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
-          print(os.path.join(root, f))
-          for os.path.join(root, f) in output:
+          file_name = os.path.join(root, f)
+          print(file_name)
+          for file_name in output:
               if f.endswith((".h", ".c", ".hpp", ".cpp")):
                   source_list.append(os.path.join(root, f))
     source_list.sort()
