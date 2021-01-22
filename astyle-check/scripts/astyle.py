@@ -72,20 +72,20 @@ def checkAstyle():
 
 # Find all files in source root path
 def find_files():
-    try: 
-        output = subprocess.check_output(['git', 'diff', '--name-only', 'origin/main^'],stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as e:
-        print("Exception on process, rc=", e.returncode, "output=", e.output)
+    # try: 
+        # output = subprocess.check_output(['git', 'diff', '--name-only', 'origin/main^'],stderr=subprocess.STDOUT)
+    # except subprocess.CalledProcessError as e:
+        # print("Exception on process, rc=", e.returncode, "output=", e.output)
 
-    print(output)
+    # print(output)
 
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
-          file_name = os.path.join(root, f)
-          print(file_name)
-          for file_name in output:
-              if f.endswith((".h", ".c", ".hpp", ".cpp")):
-                  source_list.append(os.path.join(root, f))
+          # file_name = os.path.join(root, f)
+          # print(file_name)
+          # for file_name in output:
+          if f.endswith((".h", ".c", ".hpp", ".cpp")):
+              source_list.append(os.path.join(root, f))
     source_list.sort()
 
 
