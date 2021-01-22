@@ -12,6 +12,7 @@ import os
 import re
 import subprocess
 import sys
+import git
 
 script_path = os.path.dirname(os.path.abspath(__file__))
 ignore_filename = ".astyleignore"
@@ -73,7 +74,7 @@ def checkAstyle():
 # Find all files in source root path
 def find_files():
     try: 
-        output = subprocess.check_output(['git', 'diff', '--name-only', 'master^'],stderr=subprocess.STDOUT)
+        output = subprocess.check_output(['git', 'diff', '--name-only', 'main^'],stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
 
