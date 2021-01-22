@@ -12,7 +12,6 @@ import os
 import re
 import subprocess
 import sys
-import git
 
 script_path = os.path.dirname(os.path.abspath(__file__))
 ignore_filename = ".astyleignore"
