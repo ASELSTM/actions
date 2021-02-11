@@ -2,7 +2,6 @@
 
 name: 'diff'
 description: 'return the list of files that has been changed within a commit'
-inputs:
 outputs:
   diff-result: # id of output
     description: 'File name of the diff result'
