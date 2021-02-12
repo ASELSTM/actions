@@ -19,7 +19,7 @@ RES=$([[ -f "astyle.out" ]] && grep --count "Formatted" <"astyle.out")
 if [[ $RES -ne 0 ]]; then
   echo -e "AStyle check \e[31;1mfailed\e[0m, please fix style issues as shown below:" >"$OUTPUT_FILE"
   grep "Formatted" <"astyle.out" | tee --append "$OUTPUT_FILE"
-  echo -e astyle.out | tee --append "$OUTPUT_FILE"
+  git --no-pager diff --color | tee --append "$OUTPUT_FILE"
   echo -e "AStyle check \e[31;1mfailed\e[0m, please fix style issues as shown above!"
   exit 1
 else
