@@ -82,8 +82,8 @@ def find_files():
      with open(changed_files_path, "r") as file:
          for line in file.readlines():
              if line.rstrip():
-             changed_file_list.append(line.rstrip())
-             print(line)
+                 changed_file_list.append(line.rstrip())
+                 print(line)
 
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
@@ -168,6 +168,9 @@ def main():
 
     if args.ignore:
         ignore_path = os.path.realpath(args.ignore)
+        
+    if args.diff:
+        changed_files_path = os.path.realpath(args.diff)        
 
     checkPath(src_path, "Source root path does not exist!")
     checkPath(def_path, "Code style definition file does not exist!")
