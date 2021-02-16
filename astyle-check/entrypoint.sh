@@ -4,12 +4,15 @@ ROOT_SRC_PATH="$1"
 readonly IGNORE_LIST_PATH="$2"
 readonly ASTYLE_DEFINITION_PATH="$3"
 
+readonly OUTPUT_DIFF_FILE="diff-result.txt"
 readonly OUTPUT_FILE="astyle-result.txt"
 echo ::set-output name=astyle-result::$OUTPUT_FILE
 
 if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
+
+git diff --name-only HEAD~1 | tee --append
 
 python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
   exit 1
