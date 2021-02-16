@@ -1,21 +1,26 @@
-# STMicroelectronics code style definition file for astyle
+# STM32duino code style definition file for astyle
 
 # Don't create backup files, let git handle it
 suffix=none
 
-# ansi style
-style=ansi
+# K&R style
+style=kr
+
+# 1 TBS addition to k&r, add braces to one liners
+# Use -j as it was changed in astyle from brackets to braces, this way it is compatible with older astyle versions
+-j
 
 # 2 spaces, convert tabs to spaces
 indent=spaces=2
 convert-tabs
-add-brackets
-lineend=windows
+lineend=linux
 
 # Indent switches and cases
+indent-classes
 indent-switches
-min-conditional-indent=0
-max-instatement-indent=60
+indent-cases
+indent-col1-comments
+indent-preproc-block
 
 # Remove spaces in and around parentheses
 unpad-paren
@@ -24,7 +29,19 @@ unpad-paren
 pad-header
 pad-oper
 
-# Pointer operators go next to the name (on the right)
+# Pointer/reference operators go next to the name (on the right)
 align-pointer=name
+align-reference=name
 
+# Attach { for classes and namespaces
+attach-namespaces
+attach-classes
 
+# Extend longer lines, define maximum 120 value. This results in aligned code,
+# otherwise the lines are broken and not consistent 
+max-continuation-indent=120
+
+# if you like one-liners, keep them
+keep-one-line-statements
+
+#remove-comment-prefix
