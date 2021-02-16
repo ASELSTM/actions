@@ -78,13 +78,20 @@ def find_files():
         # print("Exception on process, rc=", e.returncode, "output=", e.output)
 
     # print(output)
+    
+     with open(changed_files_path, "r") as file:
+         for line in file.readlines():
+             if line.rstrip():
+             changed_file_list.append(line.rstrip())
+             print(line)
 
     for root, dirs, files in os.walk(src_path, followlinks=True):
         for f in files:
           # file_name = os.path.join(root, f)
           # print(file_name)
           # for file_name in output:
-          if f.endswith((".h", ".c", ".hpp", ".cpp")):
+          # if f.endswith((".h", ".c", ".hpp", ".cpp")):
+          if f.endswith((".h", ".c")):
               source_list.append(os.path.join(root, f))
     source_list.sort()
 
@@ -151,6 +158,7 @@ def main():
     global ignore_path
     global def_path
     global src_path
+    global changed_files_path
 
     if args.root:
         src_path = os.path.realpath(args.root)

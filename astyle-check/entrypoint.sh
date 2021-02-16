@@ -14,7 +14,7 @@ if [ -z "$1" ]; then
 fi
 
 echo -e "List of changed files"
-git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append
+git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append $OUTPUT_DIFF_FILE
 echo -e "End of List"
 
 python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
