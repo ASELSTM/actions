@@ -7,12 +7,15 @@ readonly ASTYLE_DEFINITION_PATH="$3"
 readonly OUTPUT_DIFF_FILE="diff-result.txt"
 readonly OUTPUT_FILE="astyle-result.txt"
 echo ::set-output name=astyle-result::$OUTPUT_FILE
+echo ::set-output name=diff-result::$OUTPUT_DIFF_FILE
 
 if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
 
+echo -e "List of changed files"
 git log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append
+echo -e "end of changed files"
 
 python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
   exit 1
