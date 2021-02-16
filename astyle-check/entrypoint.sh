@@ -12,7 +12,7 @@ if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
 
-git log -p -1 | grep "diff --git " | cut -d' ' -f3 | cut -d'a' -f2 | tee --append
+git log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append
 
 python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
   exit 1
