@@ -4,20 +4,20 @@ ROOT_SRC_PATH="$1"
 readonly IGNORE_LIST_PATH="$2"
 readonly ASTYLE_DEFINITION_PATH="$3"
 
-readonly OUTPUT_DIFF_FILE="diff-result.txt"
 readonly OUTPUT_FILE="astyle-result.txt"
 echo ::set-output name=astyle-result::$OUTPUT_FILE
-echo ::set-output name=diff-result::$OUTPUT_DIFF_FILE
 
 if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
 
+diff-result=$(mktemp --suffix ".txt")
+
 echo -e "List of changed files"
-git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append $OUTPUT_DIFF_FILE
+git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append diff-result
 echo -e "End of List"
 
-python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" $OUTPUT_DIFF_FILE || {
+python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" diff-result || {
   exit 1
 }
 
