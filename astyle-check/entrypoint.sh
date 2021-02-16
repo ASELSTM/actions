@@ -12,7 +12,7 @@ if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
 
-git diff --name-only @^ | tee --append
+git log | tee --append
 
 python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
   exit 1
