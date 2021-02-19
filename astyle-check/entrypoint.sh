@@ -11,13 +11,13 @@ if [ -z "$1" ]; then
   ROOT_SRC_PATH="."
 fi
 
-diff-result=$(mktemp --suffix ".txt")
+# diff-result=$(mktemp --suffix ".txt")
 
-echo -e "List of changed files"
-git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append diff-result
-echo -e "End of List"
+# echo -e "List of changed files"
+# git --no-pager log -p -1 | grep "diff --git " | awk -F "a/" '{print $NF}' | cut -d' ' -f1 | tee --append diff-result
+# echo -e "End of List"
 
-python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" diff-result || {
+python3 /scripts/astyle.py -r "$ROOT_SRC_PATH" -i "$IGNORE_LIST_PATH" -d "$ASTYLE_DEFINITION_PATH" || {
   exit 1
 }
 

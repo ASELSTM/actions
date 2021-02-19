@@ -79,6 +79,14 @@ def find_files():
 
     # print(output)
 
+    try: 
+        output = subprocess.check_output(['git log -p -1'],stderr=subprocess.STDOUT)
+        print(output)
+    except subprocess.CalledProcessError as e:
+        print("Exception on process, rc=", e.returncode, "output=", e.output)
+        sys.exit(1)
+    
+
     with open(changed_files_path, "r") as file:
         for line in file.readlines():
             if line.rstrip():
