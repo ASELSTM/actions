@@ -166,7 +166,7 @@ def main():
     global ignore_path
     global def_path
     global src_path
-    global changed_files_path
+    # global changed_files_path
 
     if args.root:
         src_path = os.path.realpath(args.root)
@@ -177,8 +177,8 @@ def main():
     if args.ignore:
         ignore_path = os.path.realpath(args.ignore)
         
-    if args.diff:
-        changed_files_path = os.path.realpath(args.diff)        
+    # if args.diff:
+        # changed_files_path = os.path.realpath(args.diff)        
 
     checkPath(src_path, "Source root path does not exist!")
     checkPath(def_path, "Code style definition file does not exist!")
