@@ -87,11 +87,11 @@ def find_files():
         sys.exit(1)
     
 
-    with open(changed_files_path, "r") as file:
-        for line in file.readlines():
-            if line.rstrip():
-                changed_file_list.append(line.rstrip())
-                print(line)
+    # with open(changed_files_path, "r") as file:
+        # for line in file.readlines():
+            # if line.rstrip():
+                # changed_file_list.append(line.rstrip())
+                # print(line)
 
     for root, dirs, files in os.walk(src_path, followlinks=True):
        for f in files:
