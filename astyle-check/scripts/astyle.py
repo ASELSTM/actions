@@ -80,7 +80,8 @@ def find_files():
     # print(output)
 
     try: 
-        output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-only'],stderr=subprocess.STDOUT)
+        commit = 1
+        output = subprocess.run(['git', '--no-pager', 'log', '-%d', '--name-only'],commit,stderr=subprocess.STDOUT)
 
         print(output)
     except subprocess.CalledProcessError as e:
