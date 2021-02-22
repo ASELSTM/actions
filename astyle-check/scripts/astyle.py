@@ -80,7 +80,7 @@ def find_files():
     # print(output)
 
     try: 
-        output = subprocess.Popen(['git', '--no-pager', 'log', '-1', '--name-only'],stderr=subprocess.STDOUT)
+        output = subprocess.Popen(['git', 'log', '--name-only', '-1'],stderr=subprocess.STDOUT)
 
         print(output)
     except subprocess.CalledProcessError as e:
