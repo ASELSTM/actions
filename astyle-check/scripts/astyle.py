@@ -78,9 +78,11 @@ def find_files():
         # print("Exception on process, rc=", e.returncode, "output=", e.output)
 
     # print(output)
+    cmd = []
+    cmd.append("git log --name-only -1")
 
     try: 
-        output = subprocess.Popen(['git', 'log', '--name-only', '-1'],stderr=subprocess.STDOUT)
+        output = subprocess.Popen(cmd,stderr=subprocess.STDOUT)
 
         print(output)
     except subprocess.CalledProcessError as e:
