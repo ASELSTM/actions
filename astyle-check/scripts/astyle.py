@@ -80,12 +80,15 @@ def find_files():
     # print(output)
 
     try: 
-        output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-status'],stderr=subprocess.STDOUT)
+        # output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-status'],stderr=subprocess.STDOUT)
+        
+        output = subprocess.run(['git', 'diff', '--name-only', 'HEAD~1'],stderr=subprocess.STDOUT)
+        
         # output = subprocess.run(['git', 'diff', 'b5846e9413f25f7fbfe266e53bb4f911e65e524e'],stderr=subprocess.STDOUT)
         # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
 
         print(output)
-        print output.count('M ')
+        
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
