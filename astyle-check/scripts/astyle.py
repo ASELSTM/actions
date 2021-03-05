@@ -82,12 +82,12 @@ def find_files():
     try: 
         # output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-status'],stderr=subprocess.STDOUT)
         
-        output = subprocess.run(['git', 'diff', '--name-only', 'HEAD~1'],stderr=subprocess.STDOUT)
+        Diff_files = subprocess.run(['git', 'diff', '--name-only', 'HEAD~1'],stderr=subprocess.STDOUT)
         
         # output = subprocess.run(['git', 'diff', 'b5846e9413f25f7fbfe266e53bb4f911e65e524e'],stderr=subprocess.STDOUT)
         # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
 
-        print(output)
+        print(Diff_files)
         
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
@@ -106,9 +106,9 @@ def find_files():
                 
                 
     # with open(changed_files_path, "r") as file:
-        for line in output.readlines():
+        for line in Diff_files.readlines():
           print(line)
-          if f.endswith((".h", ".c")):
+          if line.endswith((".h", ".c")):
             source_list.append(line)
     source_list.sort()
             # if line.rstrip():
