@@ -107,6 +107,7 @@ def find_files():
                 
     # with open(changed_files_path, "r") as file:
         for line in output.readlines():
+          print(line)
           if f.endswith((".h", ".c")):
             source_list.append(line)
     source_list.sort()
