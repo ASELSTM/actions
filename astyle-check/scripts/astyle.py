@@ -85,9 +85,11 @@ def find_files():
         # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
 
         print(output)
+        print output.count('M ')
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
+    
     
 
     # with open(changed_files_path, "r") as file:
