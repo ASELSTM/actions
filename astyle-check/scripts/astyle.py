@@ -72,38 +72,15 @@ def checkAstyle():
 
 # Find all files in source root path
 def find_files():
-    # try: 
-        # output = subprocess.check_output(['git', 'diff', '--name-only', 'origin/main^'],stderr=subprocess.STDOUT)
-    # except subprocess.CalledProcessError as e:
-        # print("Exception on process, rc=", e.returncode, "output=", e.output)
-
-    # print(output)
-
-    # try: 
-        # output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-status'],stderr=subprocess.STDOUT)
-        # output = subprocess.run(['git', 'diff', 'b5846e9413f25f7fbfe266e53bb4f911e65e524e'],stderr=subprocess.STDOUT)
-        # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
-
-        # print(output)
-    # except subprocess.CalledProcessError as e:
-        # print("Exception on process, rc=", e.returncode, "output=", e.output)
-        # sys.exit(1)
-    
-
-    # with open(changed_files_path, "r") as file:
-        # for line in file.readlines():
-            # if line.rstrip():
-                # changed_file_list.append(line.rstrip())
-                # print(line)
-
+        # output = subprocess.check_output(
+            # ["git", " diff", "--name-only HEAD~1..HEAD"],
+            # stderr=subprocess.STDOUT,
+        # )
     for root, dirs, files in os.walk(src_path, followlinks=True):
-       for f in files:
-         # file_name = os.path.join(root, f)
-         # print(file_name)
-         # for file_name in output:
-         # if f.endswith((".h", ".c", ".hpp", ".cpp")):
-         if f.endswith((".h", ".c")):
-             source_list.append(os.path.join(root, f))
+        for f in files:
+          for os.path.join(root, f) in output:
+              if f.endswith((".h", ".c")):
+                  source_list.append(os.path.join(root, f))
     source_list.sort()
 
 
@@ -169,7 +146,6 @@ def main():
     global ignore_path
     global def_path
     global src_path
-    # global changed_files_path
 
     if args.root:
         src_path = os.path.realpath(args.root)
@@ -179,9 +155,6 @@ def main():
 
     if args.ignore:
         ignore_path = os.path.realpath(args.ignore)
-        
-    # if args.diff:
-        # changed_files_path = os.path.realpath(args.diff)        
 
     checkPath(src_path, "Source root path does not exist!")
     checkPath(def_path, "Code style definition file does not exist!")
