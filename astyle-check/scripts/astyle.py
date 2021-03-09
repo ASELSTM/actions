@@ -91,7 +91,7 @@ def find_files():
         
         s = Diff_files.decode("utf-8")
         
-        s.split('\n')
+        print(s.split('\n'))
         
         
         
