@@ -92,11 +92,10 @@ def find_files():
         s = (Diff_files.decode("utf-8")).split('\n')
         
         # print(s.split('\n'))
-        # print(s)
+        print(s)
         
 
-        for modif in  s :
-          print (modif)
+
 
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
@@ -110,7 +109,8 @@ def find_files():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
 
-
+        for modif in  s :
+          print (modif)
                 
 
     # with open(changed_files_path, "r") as file:
