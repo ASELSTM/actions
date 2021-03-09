@@ -89,6 +89,12 @@ def find_files():
 
         print(Diff_files)
         
+        s = Diff_files
+        
+        s.split('\n')
+        
+        
+        
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
