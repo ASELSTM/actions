@@ -108,8 +108,8 @@ def find_files():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
 
-    for a in  s
-      print a    
+    # for a in  s
+      # print a    
                 
                 
                 
