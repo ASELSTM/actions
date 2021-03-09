@@ -92,11 +92,15 @@ def find_files():
         s = (Diff_files.decode("utf-8")).split('\n')
         
         # print(s.split('\n'))
-        print(s)
+        # print(s)
         
 
+        for modif in  s :
+          print (modif)
+          if modif.endswith((".h", ".c")):
+            source_list.append(modif)
 
-
+    source_list.sort()
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
@@ -109,16 +113,15 @@ def find_files():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
 
-        for modif in  s :
-          print (modif)
+
                 
 
     # with open(changed_files_path, "r") as file:
-        for line in Diff_files.readlines():
-          print(line)
-          if line.endswith((".h", ".c")):
-            source_list.append(line)
-    source_list.sort()
+        # for line in Diff_files.readlines():
+          # print(line)
+          # if line.endswith((".h", ".c")):
+            # source_list.append(line)
+
             # if line.rstrip():
                 # changed_file_list.append(line.rstrip())
                 # print(line)                
