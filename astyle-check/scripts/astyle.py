@@ -89,7 +89,7 @@ def find_files():
 
         print(Diff_files)
         
-        s = Diff_files
+        s = Diff_files.decode("utf-8")
         
         s.split('\n')
         
