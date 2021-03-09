@@ -83,7 +83,7 @@ def find_files():
             source_list.append(modif)
 
         source_list.sort()
-
+        print(source_list)
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
@@ -161,6 +161,7 @@ def main():
 
     if args.ignore:
         ignore_path = os.path.realpath(args.ignore)
+        
 
     checkPath(src_path, "Source root path does not exist!")
     checkPath(def_path, "Code style definition file does not exist!")
@@ -178,6 +179,6 @@ def main():
     else:
         print("No file found to apply Astyle")
 
-    print(source_list)
+
 if __name__ == "__main__":
     main()
