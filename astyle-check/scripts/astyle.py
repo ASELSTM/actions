@@ -178,6 +178,6 @@ def main():
     else:
         print("No file found to apply Astyle")
 
-
+    print(source_list)
 if __name__ == "__main__":
     main()
