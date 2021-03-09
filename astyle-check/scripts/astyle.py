@@ -96,7 +96,7 @@ def find_files():
         
 
         for modif in  s :
-          print modif
+          print (modif)
 
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
