@@ -92,6 +92,7 @@ def find_files():
         s = (Diff_files.decode("utf-8")).split('\n')
         
         # print(s.split('\n'))
+        print(s)
         
         
         
@@ -106,7 +107,7 @@ def find_files():
             # if line.rstrip():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
-                
+
     for a in  s
       print a    
                 
