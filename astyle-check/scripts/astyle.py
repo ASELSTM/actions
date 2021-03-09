@@ -108,11 +108,10 @@ def find_files():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
 
-    # for a in  s
-      # print a    
+        for modif in  s :
+          print (modif)
                 
-                
-                
+
     # with open(changed_files_path, "r") as file:
         for line in Diff_files.readlines():
           print(line)
