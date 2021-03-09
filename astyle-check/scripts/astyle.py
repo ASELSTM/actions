@@ -83,7 +83,7 @@ def find_files():
             source_list.append(modif)
 
         source_list.sort()
-        print(source_list)
+
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
