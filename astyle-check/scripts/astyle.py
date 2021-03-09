@@ -72,70 +72,22 @@ def checkAstyle():
 
 # Find all files in source root path
 def find_files():
-    # try: 
-        # output = subprocess.check_output(['git', 'diff', '--name-only', 'origin/main^'],stderr=subprocess.STDOUT)
-    # except subprocess.CalledProcessError as e:
-        # print("Exception on process, rc=", e.returncode, "output=", e.output)
 
-    # print(output)
 
-    try: 
-        # output = subprocess.run(['git', '--no-pager', 'log', '-1', '--name-status'],stderr=subprocess.STDOUT)
-        
-        Diff_files = subprocess.check_output(['git', 'diff', '--name-only', 'HEAD~1'], stderr=subprocess.STDOUT)
-        
-        # output = subprocess.run(['git', 'diff', 'b5846e9413f25f7fbfe266e53bb4f911e65e524e'],stderr=subprocess.STDOUT)
-        # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
+    try:        
+        output = subprocess.check_output(['git', 'diff', '--name-only', 'HEAD~1'], stderr=subprocess.STDOUT)
+        changed_files = (output.decode("utf-8")).split('\n')
 
-        # print(Diff_files)
-        
-        s = (Diff_files.decode("utf-8")).split('\n')
-        
-        # print(s.split('\n'))
-        # print(s)
-        
-
-        for modif in  s :
-          print (modif)
+        for modif in  changed_files :
           if modif.endswith((".h", ".c")):
             source_list.append(modif)
 
         source_list.sort()
+
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
     
-    
-
-    # with open(changed_files_path, "r") as file:
-        # for line in file.readlines():
-            # if line.rstrip():
-                # changed_file_list.append(line.rstrip())
-                # print(line)
-
-
-                
-
-    # with open(changed_files_path, "r") as file:
-        # for line in Diff_files.readlines():
-          # print(line)
-          # if line.endswith((".h", ".c")):
-            # source_list.append(line)
-
-            # if line.rstrip():
-                # changed_file_list.append(line.rstrip())
-                # print(line)                
-
-    # for root, dirs, files in os.walk(src_path, followlinks=True):
-       # for f in files:
-         # # file_name = os.path.join(root, f)
-         # # print(file_name)
-         # # for file_name in output:
-         # # if f.endswith((".h", ".c", ".hpp", ".cpp")):
-         # if f.endswith((".h", ".c")):
-             # source_list.append(os.path.join(root, f))
-    # source_list.sort()
-
 
 # Filter source files list
 def manage_exclude_list():
@@ -209,9 +161,6 @@ def main():
 
     if args.ignore:
         ignore_path = os.path.realpath(args.ignore)
-        
-    # if args.diff:
-        # changed_files_path = os.path.realpath(args.diff)        
 
     checkPath(src_path, "Source root path does not exist!")
     checkPath(def_path, "Code style definition file does not exist!")
