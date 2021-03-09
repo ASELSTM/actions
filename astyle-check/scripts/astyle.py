@@ -87,15 +87,17 @@ def find_files():
         # output = subprocess.run(['git', 'diff', 'b5846e9413f25f7fbfe266e53bb4f911e65e524e'],stderr=subprocess.STDOUT)
         # output = subprocess.Popen(['git', 'log', '--stat'],stderr=subprocess.STDOUT)
 
-        print(Diff_files)
+        # print(Diff_files)
         
         s = (Diff_files.decode("utf-8")).split('\n')
         
         # print(s.split('\n'))
-        print(s)
+        # print(s)
         
-        
-        
+
+        for modif in  s :
+          print modif
+
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
@@ -108,8 +110,7 @@ def find_files():
                 # changed_file_list.append(line.rstrip())
                 # print(line)
 
-        for modif in  s :
-          print (modif)
+
                 
 
     # with open(changed_files_path, "r") as file:
