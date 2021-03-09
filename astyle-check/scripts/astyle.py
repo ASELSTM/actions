@@ -100,7 +100,7 @@ def find_files():
           if modif.endswith((".h", ".c")):
             source_list.append(modif)
 
-    source_list.sort()
+        source_list.sort()
     except subprocess.CalledProcessError as e:
         print("Exception on process, rc=", e.returncode, "output=", e.output)
         sys.exit(1)
