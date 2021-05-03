@@ -41,6 +41,9 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 #  with "echo" and "gcc" commands.
 for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
+    # Log message to the user.
+    echo "Compiling $device"
+
     for source in "${HAL_DIR}/Src"/*.c
     do
         # Log message to the user.
