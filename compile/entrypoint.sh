@@ -45,7 +45,7 @@ do
     # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
     # a = $(echo "$device"|cut -d'/' -f8|cut -d'.' -f1)
     
-    echo "Compilation on device" + '$device|cut -d'/' -f8|cut -d'.' -f1'
+    echo "Compilation on device" $device|cut -d'/' -f8|cut -d'.' -f1
     # if ["$device" == ]; then continue 
     # fi
 
