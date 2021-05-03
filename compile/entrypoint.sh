@@ -42,8 +42,9 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
     # Log message to the user.
-    # a = "${device}"|cut -d'/' -f8|cut -d'.' -f1
-    echo "${device}"|cut -d'/' -f8|cut -d'.' -f1 | read a
+    # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
+    a = 'echo $device|cut -d'/' -f8|cut -d'.' -f1'
+    
     echo "Compilation on device ${a}"
     # if ["$device" == ]; then continue 
     # fi
