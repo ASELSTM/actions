@@ -42,8 +42,8 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
     # Log message to the user.
-    a = $device|cut -d'/' -f8|cut -d'.' -f1
-    echo "Compiling $a"
+    a = '$device|cut -d'/' -f8|cut -d'.' -f1'
+    echo "Device $a"
 
     for source in "${HAL_DIR}/Src"/*.c
     do
