@@ -8,7 +8,6 @@ readonly  DEFINES="$3"
 readonly  OPTIONS="$4"
 
 readonly  CMSIS_DIR="./Drivers/CMSIS/Device/ST/STM32${STM32_SERIES}xx"
-readonly  CMSIS_DEVICE_DIR="./Drivers/CMSIS/Device/ST/STM32${STM32_SERIES}xx/Include"
 readonly  HAL_DIR="./Drivers/STM32${STM32_SERIES}xx_HAL_Driver"
 readonly  INCLUDES="-I./Drivers/CMSIS/Include -I${CMSIS_DIR}/Include -I${HAL_DIR}/Inc -I./CI/build"
 
@@ -38,20 +37,17 @@ arm-none-eabi-gcc --version
 #  NOTE: ${STM32_SERIES,,} to convert to lower case.
 cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf.h"
 
-FICHIER_TEMP = 'mktemp'
-ls CMSIS_DEVICE_DIR | find stm32f2* | cut -d '.' -f1 >> $FICHIER_TEMP
-
 # Each iteration, get current source file name in variable "source" to use it
 #  with "echo" and "gcc" commands.
-for source in "${HAL_DIR}/Src"/*.c
+for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
-    for DEVICE in $FICHIER_TEMP
-    do 
-    # Log message to the user.
-    echo "Compiling $source $DEVICE"
-    # Use option -c to stop build at compile- or assemble-level.
-    arm-none-eabi-gcc $OPTIONS $DEVICE $INCLUDES -c $source
+    for source in "${HAL_DIR}/Src"/*.c
+    do
+        # Log message to the user.
+        echo "Compiling $source"
+        # Use option -c to stop build at compile- or assemble-level.
+        arm-none-eabi-gcc $OPTIONS $device $INCLUDES -c $source
+        # In case compilation fails, stop the loop and do not compile remaining files.
+        if [ $? != 0 ] ; then exit 1; fi
     done
-    # In case compilation fails, stop the loop and do not compile remaining files.
-    if [ $? != 0 ] ; then exit 1; fi
-done
+done    
