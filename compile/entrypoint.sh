@@ -42,14 +42,15 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
     # Log message to the user.
-    echo "Compiling" $device|cut -d'/' -f8|cut -d'.' -f1
+    $a = $device|cut -d'/' -f8|cut -d'.' -f1
+    echo "Compiling" $a
 
     for source in "${HAL_DIR}/Src"/*.c
     do
         # Log message to the user.
         echo "Compiling $source"
         # Use option -c to stop build at compile- or assemble-level.
-        arm-none-eabi-gcc $OPTIONS ($device|cut -d'/' -f8|cut -d'.' -f1) $INCLUDES -c $source
+        arm-none-eabi-gcc $OPTIONS $a $INCLUDES -c $source
         # In case compilation fails, stop the loop and do not compile remaining files.
         if [ $? != 0 ] ; then exit 1; fi
     done
