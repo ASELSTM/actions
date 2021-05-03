@@ -43,9 +43,9 @@ for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
 do
     # Log message to the user.
     # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
-    a = 'echo $device|cut -d'/' -f8|cut -d'.' -f1'
+    a = $(echo "$device"|cut -d'/' -f8|cut -d'.' -f1)
     
-    echo "Compilation on device ${a}"
+    echo "Compilation on device $a"
     # if ["$device" == ]; then continue 
     # fi
 
