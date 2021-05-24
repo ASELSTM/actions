@@ -50,10 +50,10 @@ do
     DEVICE_INDEX='-D'${DEVICE_INDEX}'xx'
     
     echo ${DEVICE_INDEX}
-    # a= $(wc -m $DEVICE_INDEX)
-    # echo $a
+    a=$(echo "${DEVICE_INDEX}"|wc -m)
+    echo $a
 
-    if [$DEVICE_INDEX != "-DSTM32F2xx" ]; then 
+    if [$a > 11 ]; then 
       for source in "${HAL_DIR}/Src"/*.c
       do
           # Log message to the user.
