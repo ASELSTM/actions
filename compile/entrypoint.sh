@@ -53,7 +53,6 @@ do
 
 
     if [ $a -eq 14 ]; then 
-    
       echo "Compilation on device "${PART_NUMBER}"xx" ;
       for source in "${HAL_DIR}/Src"/*.c
       do
