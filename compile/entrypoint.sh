@@ -41,20 +41,15 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 #  with "echo" and "gcc" commands.
 for device in "${CMSIS_DIR}/Include/stm32${STM32_SERIES,,}"*.h
 do
-    # Log message to the user.
-    # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
-    # a = $(echo "$device"|cut -d'/' -f8|cut -d'.' -f1)
-
 
     PART_NUMBER=$(echo "${device^^}"|cut -d'/' -f8|cut -d"X" -f1)
     DEFINE_LIST='-D'${PART_NUMBER}'xx'
-    
-    a=$(echo "${DEFINE_LIST}"|wc -m)
 
+    a=$(echo "${DEFINE_LIST}"|wc -m)
 
     if [ $a -eq 14 ]; then 
       echo "********************************************************"
-      echo "********Compilation on device "${PART_NUMBER}"xx********" ;
+      echo "******** Compilation on device ${PART_NUMBER}xx ********" ;
       echo "********************************************************"
       for source in "${HAL_DIR}/Src"/*.c
       do
