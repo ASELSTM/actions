@@ -53,7 +53,7 @@ do
     a=$(echo "${DEVICE_INDEX}"|wc -m)
     echo $a
 
-    if [$a > 11 ]; then 
+    if [$a -eq 14 ]; then 
       for source in "${HAL_DIR}/Src"/*.c
       do
           # Log message to the user.
