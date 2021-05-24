@@ -53,18 +53,15 @@ do
     a= $(wc -m $DEVICE_INDEX)
     echo $a
 
-    # if ["$DEVICE_INDEX" == "-DSTM32F2xx" ]; then continue 
-    # fi
-  while(a > 11 )
-  do
-    for source in "${HAL_DIR}/Src"/*.c
-    do
-        # Log message to the user.
-        echo "Compiling $source"
-        # Use option -c to stop build at compile- or assemble-level.
-        arm-none-eabi-gcc $OPTIONS ${DEVICE_INDEX} $INCLUDES -c $source
-        # In case compilation fails, stop the loop and do not compile remaining files.
-        if [ $? != 0 ] ; then exit 1; fi
-    done
-  done
+    if [${DEVICE_INDEX} != "-DSTM32F2xx" ]; then 
+      for source in "${HAL_DIR}/Src"/*.c
+      do
+          # Log message to the user.
+          echo "Compiling $source"
+          # Use option -c to stop build at compile- or assemble-level.
+          arm-none-eabi-gcc $OPTIONS ${DEVICE_INDEX} $INCLUDES -c $source
+          # In case compilation fails, stop the loop and do not compile remaining files.
+          if [ $? != 0 ] ; then exit 1; fi
+      done
+    fi 
 done    
