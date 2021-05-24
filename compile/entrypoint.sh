@@ -50,11 +50,12 @@ do
     DEVICE_INDEX='-D'${DEVICE_INDEX}'xx'
     
     echo ${DEVICE_INDEX}
-    
-    a=
-    if ["$DEVICE_INDEX" == "-DSTM32F2xx" ]; then continue 
-    fi
-  while(wc -m ${DEVICE_INDEX} > 11 )
+    a= $(wc -m ${DEVICE_INDEX})
+    echo $a
+
+    # if ["$DEVICE_INDEX" == "-DSTM32F2xx" ]; then continue 
+    # fi
+  while(a > 11 )
   do
     for source in "${HAL_DIR}/Src"/*.c
     do
