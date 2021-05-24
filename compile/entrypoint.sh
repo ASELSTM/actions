@@ -50,8 +50,8 @@ do
     DEVICE_INDEX='-D'${DEVICE_INDEX}'xx'
     
     echo ${DEVICE_INDEX}
-    a= $(wc -m $DEVICE_INDEX)
-    echo $a
+    # a= $(wc -m $DEVICE_INDEX)
+    # echo $a
 
     if [${DEVICE_INDEX} != "-DSTM32F2xx" ]; then 
       for source in "${HAL_DIR}/Src"/*.c
