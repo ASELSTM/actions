@@ -53,7 +53,9 @@ do
 
 
     if [ $a -eq 14 ]; then 
-      echo " \n *****Compilation on device "${PART_NUMBER}"xx***** \n " ;
+      echo "********************************************************"
+      echo "/n *****Compilation on device "${PART_NUMBER}"xx***** /n" ;
+      echo "********************************************************"
       for source in "${HAL_DIR}/Src"/*.c
       do
           # Log message to the user.
