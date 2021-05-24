@@ -52,8 +52,8 @@ do
     echo ${DEVICE_INDEX}
     
     
-    # if ["$device" == ]; then continue 
-    # fi
+    if ["$DEVICE_INDEX" == "-DSTM32F2xx" ]; then continue 
+    fi
 
     for source in "${HAL_DIR}/Src"/*.c
     do
