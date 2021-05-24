@@ -60,7 +60,7 @@ do
         # Log message to the user.
         echo "Compiling $source"
         # Use option -c to stop build at compile- or assemble-level.
-        arm-none-eabi-gcc $OPTIONS ${a} $INCLUDES -c $source
+        arm-none-eabi-gcc $OPTIONS ${DEVICE_INDEX} $INCLUDES -c $source
         # In case compilation fails, stop the loop and do not compile remaining files.
         if [ $? != 0 ] ; then exit 1; fi
     done
