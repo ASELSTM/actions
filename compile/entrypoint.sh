@@ -39,7 +39,7 @@ cp "${HAL_DIR}/Inc/stm32${STM32_SERIES,,}xx_hal_conf_template.h" "${HAL_DIR}/Inc
 
 # Each iteration, get current source file name in variable "source" to use it
 #  with "echo" and "gcc" commands.
-for device in "${CMSIS_DIR}/Include"/'stm32f'*.h
+for device in "${CMSIS_DIR}/Include/stm32${STM32_SERIES,,}"*.h
 do
     # Log message to the user.
     # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
@@ -47,11 +47,12 @@ do
     
     echo "Compilation on device" ;
     DEVICE_INDEX=$(echo "${device^^}"|cut -d'/' -f8|cut -d"X" -f1)
+    echo "Compilation on device"${DEVICE_INDEX} ;
     DEVICE_INDEX='-D'${DEVICE_INDEX}'xx'
     
-    echo ${DEVICE_INDEX}
+    # echo ${DEVICE_INDEX}
     a=$(echo "${DEVICE_INDEX}"|wc -m)
-    echo $a
+    # echo $a
 
     if [ $a -eq 14 ]; then 
       for source in "${HAL_DIR}/Src"/*.c
