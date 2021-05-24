@@ -46,8 +46,8 @@ do
     # a = $(echo "$device"|cut -d'/' -f8|cut -d'.' -f1)
     
     echo "Compilation on device" ;
-    DEVICE_INDEX=$(echo "${device}"|cut -d'/' -f8|cut -d'.' -f1)
-    DEVICE_INDEX='-D'${DEVICE_INDEX^^}
+    DEVICE_INDEX=$(echo "${device^^}"|cut -d'/' -f8|cut -d'.' -f1)
+    DEVICE_INDEX='-D'${DEVICE_INDEX,,[x]}
     
     echo ${DEVICE_INDEX}
     
