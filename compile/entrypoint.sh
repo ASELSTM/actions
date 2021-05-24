@@ -44,23 +44,23 @@ do
     # Log message to the user.
     # a = $("${device}"|cut -d'/' -f8|cut -d'.' -f1)
     # a = $(echo "$device"|cut -d'/' -f8|cut -d'.' -f1)
+
+
+    PART_NUMBER=$(echo "${device^^}"|cut -d'/' -f8|cut -d"X" -f1)
+    DEFINE_LIST='-D'${PART_NUMBER}'xx'
     
-    echo "Compilation on device" ;
-    DEVICE_INDEX=$(echo "${device^^}"|cut -d'/' -f8|cut -d"X" -f1)
-    echo "Compilation on device"${DEVICE_INDEX} ;
-    DEVICE_INDEX='-D'${DEVICE_INDEX}'xx'
-    
-    # echo ${DEVICE_INDEX}
-    a=$(echo "${DEVICE_INDEX}"|wc -m)
-    # echo $a
+    a=$(echo "${DEFINE_LIST}"|wc -m)
+
 
     if [ $a -eq 14 ]; then 
+    
+      echo "Compilation on device "${PART_NUMBER}"xx" ;
       for source in "${HAL_DIR}/Src"/*.c
       do
           # Log message to the user.
           echo "Compiling $source"
           # Use option -c to stop build at compile- or assemble-level.
-          arm-none-eabi-gcc $OPTIONS ${DEVICE_INDEX} $INCLUDES -c $source
+          arm-none-eabi-gcc $OPTIONS ${DEFINE_LIST} $INCLUDES -c $source
           # In case compilation fails, stop the loop and do not compile remaining files.
           if [ $? != 0 ] ; then exit 1; fi
       done
