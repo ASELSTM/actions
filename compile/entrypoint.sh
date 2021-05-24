@@ -53,7 +53,7 @@ do
     # a= $(wc -m $DEVICE_INDEX)
     # echo $a
 
-    if [${DEVICE_INDEX} != "-DSTM32F2xx" ]; then 
+    if [$DEVICE_INDEX != "-DSTM32F2xx" ]; then 
       for source in "${HAL_DIR}/Src"/*.c
       do
           # Log message to the user.
