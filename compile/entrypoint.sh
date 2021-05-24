@@ -47,7 +47,7 @@ do
     
     echo "Compilation on device" ;
     DEVICE_INDEX=$(echo "${device}"|cut -d'/' -f8|cut -d'.' -f1)
-    DEVICE_INDEX='-DSTM'${DEVICE_INDEX^^}
+    DEVICE_INDEX='-D'${DEVICE_INDEX^^}
     
     echo ${DEVICE_INDEX}
     
