@@ -47,7 +47,7 @@ do
     
     echo "Compilation on device" ;
     DEVICE_INDEX=$(echo "${device}"|cut -d'/' -f8|cut -d'.' -f1)
-    echo $DEVICE_INDEX
+    echo ${DEVICE_INDEX^^}
     
     
     # if ["$device" == ]; then continue 
