@@ -51,10 +51,11 @@ do
     
     echo ${DEVICE_INDEX}
     
-    
+    a=
     if ["$DEVICE_INDEX" == "-DSTM32F2xx" ]; then continue 
     fi
-
+  while(wc -m ${DEVICE_INDEX} > 11 )
+  do
     for source in "${HAL_DIR}/Src"/*.c
     do
         # Log message to the user.
@@ -64,4 +65,5 @@ do
         # In case compilation fails, stop the loop and do not compile remaining files.
         if [ $? != 0 ] ; then exit 1; fi
     done
+  done
 done    
